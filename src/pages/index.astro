@@ -1,11 +1,294 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import AcceptInvitation from "../components/react/AcceptInvitation";
+import PersonasImportantes from "../components/astro/PersonasImportantes.astro"
+import CodigoDeVestimenta from "../components/astro/CodigoDeVestimenta.astro";
+import UbicacionEIntinerario from "../components/astro/UbicacionEIntinerario.astro";
+import SugerenciasDeHospedaje from "../components/astro/SugerenciasDeHospedaje.astro";
+import SeccionFoto2 from "../components/astro/SeccionFoto2.astro";
+import MesaDeRegalos from "../components/astro/MesaDeRegalos.astro";
+import Instagram from "../components/astro/Instagram.astro";
+import SeccionFinal from "../components/astro/SeccionFinal.astro";
+
+const nombreInvitado = "Familia Robles";
+const numInvitados = 5;
+
+const fechaEvento = new Date('2025-09-13T19:00:00');
+
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Welcome />
+	<main class="flex flex-col items-center min-h-screen w-full">
+		<!-- Sección principal con fondo fijo y mensajes scroll -->
+		<div class="relative w-full" style="height:300vh;">
+			<!-- Imagen de fondo sticky -->
+			<div
+				class="sticky-bg"
+				style="background-image: url('fotosLuz/6.JPG'); top:0;"
+			>
+				<div class="bg-overlay"></div>
+			</div>
+			<!-- Mensajes superpuestos animados -->
+			<div class="message-stack">
+				<div class="message-section" id="msg-1">
+					<div class="text-center text-white z-10 px-6 w-full flex flex-col justify-between h-full">
+						<div class="pt-20">
+							<h1 class="text-5xl font-bold mb-4 text-shadow text-white">Luz Natalia</h1>
+						</div>
+						<div>
+							
+						</div>
+						<div class="translate-y-[-85px] bg-black/40 backdrop-blur-md rounded-lg py-2">
+							<h3 class="text-4xl text-white">Para: {nombreInvitado}</h3>
+						</div>
+					</div>
+				</div>
+				<div class="message-section" id="msg-2">
+					<div class="backdrop-blur-sm  text-center text-white z-10 px-6 w-full flex flex-col items-center">
+						<div class="bg-black/40 backdrop-blur-md rounded-lg p-6 w-full max-w-md">
+							<h2 class="text-5xl font-bold mb-10 text-shadow text-white">
+								¡Estás invitado a mis <br> XV!
+							</h2>
+							<p class="text-lg text-shadow text-white mb-2" id="fecha-evento-texto">
+								<!-- Aquí se escribirá la fecha formateada por JS -->
+							</p>
+							<h2 class="text-center text-6xl pt-5">Faltan</h2>
+							<div id="countdown" class="flex gap-4 justify-center mt-2 text-white text-lg font-bold"></div>
+
+						</div>
+					</div>
+				</div>
+				<div class="message-section" id="msg-3">
+					<div class="text-center text-white bg-black/40 backdrop-blur-md z-10 px-6 w-full">
+						<p class="text-lg text-shadow font-bold text-white">Hay momentos que no se pueden borrar, personas que siempre van a estar y ocasiones como esta, que siempre voy a recordar <br> <br> Es mi deseo que compartan conmigo la celebración de mis 15 años</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Div hidden para pasar la fecha del evento al JS del cliente -->
+		<div id="fecha-evento" hidden>{fechaEvento.toISOString()}</div>
+		<!-- Sección normal después del fondo -->
+		<PersonasImportantes />
+
+		<SeccionFoto2 />
+
+		<MesaDeRegalos />
+
+		<CodigoDeVestimenta />
+
+		<AcceptInvitation nombreInvitado={nombreInvitado} numInvitados={numInvitados} client:load></AcceptInvitation>
+
+		<UbicacionEIntinerario />
+		
+		<SugerenciasDeHospedaje />
+
+		<Instagram />
+
+		<SeccionFinal />
+		<div class="w-full h-screen bg-[#8E8B63] relative flex flex-col pt-30 ">
+			<h1 class="text-white text-center font-bold text-4xl">Solamente tienes que seguir a tu corazón y mantener la sonrisa</h1>
+			<p class="text-white font-black text-2xl text-center pt-4"> - Luz Natalia - </p>
+			<img src="iconos/fondo.png" class="absolute bottom-0 left-0 w-full" alt="">
+
+		</div>
+
+		<!-- ...puedes agregar más secciones aquí si lo deseas... -->
+	</main>
+	<script>
+		// Cambia el mensaje visible según el scroll
+		const sections = [
+			document.getElementById('msg-1'),
+			document.getElementById('msg-2'),
+			document.getElementById('msg-3')
+		];
+		function updateMessages() {
+			const scrollY = window.scrollY;
+			const vh = window.innerHeight;
+			// Reduce la distancia de aparición de los mensajes
+			const threshold = 0.6; // antes era 1.0, ahora 0.6 para menos scroll entre mensajes
+			let idx = 0;
+			if (scrollY < vh * threshold) {
+				idx = 0;
+			} else if (scrollY < vh * (1 + threshold)) {
+				idx = 1;
+			} else {
+				idx = 2;
+			}
+			sections.forEach((el, i) => {
+				el.classList.remove('active', 'above');
+				if (i === idx) {
+					el.classList.add('active');
+				} else if (i < idx) {
+					el.classList.add('above');
+				}
+			});
+		}
+		window.addEventListener('scroll', updateMessages, { passive: true });
+		window.addEventListener('DOMContentLoaded', updateMessages);
+
+		// Obtener la fecha del evento desde el div hidden
+		function getFechaEvento() {
+			const el = document.getElementById('fecha-evento');
+			if (!el) return null;
+			return new Date(el.textContent.trim());
+		}
+
+		// Escribir la fecha formateada en el texto
+		function escribirFechaFormateada() {
+			const fecha = getFechaEvento();
+			const texto = document.getElementById('fecha-evento-texto');
+			if (!fecha || !texto) return;
+			const opcionesFecha = { year: 'numeric', month: 'long', day: 'numeric' };
+			const opcionesHora = { hour: 'numeric', minute: '2-digit', hour12: true };
+			const fechaFormateada = fecha.toLocaleDateString('es-MX', opcionesFecha);
+			const horaFormateada = fecha.toLocaleTimeString('es-MX', opcionesHora).replace('.', '').replace(':00 ', ' ');
+			texto.innerHTML = `<span class="font-bold">La fiesta es el ${fechaFormateada} a las ${horaFormateada}</span>.`;
+		}
+
+		// Cuenta regresiva usando la fecha del evento
+		function updateCountdown() {
+			const countdown = document.getElementById('countdown');
+			const fecha = getFechaEvento();
+			if (!countdown || !fecha) return;
+			const now = new Date();
+			const diff = fecha - now;
+			if (diff <= 0) {
+				countdown.textContent = "¡Ya llegó el gran día!";
+				return;
+			}
+			const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+			const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+			const minutes = Math.floor((diff / (1000 * 60)) % 60);
+			const seconds = Math.floor((diff / 1000) % 60);
+			countdown.innerHTML = `
+				<div class="text-2xl" ><span>${days}</span> días</div>
+				<div class="text-2xl"><span>${hours}</span> hrs</div>
+				<div class="text-2xl"><span>${minutes}</span> min</div>
+				<div class="text-2xl"><span>${seconds}</span> seg</div>
+			`;
+		}
+		setInterval(updateCountdown, 1000);
+		window.addEventListener('DOMContentLoaded', () => {
+			updateMessages();
+			escribirFechaFormateada();
+			updateCountdown();
+		});
+	</script>
+
 </Layout>
+
+
+<style>
+	:root {
+		--color-1: #D6D4AD; /* verde clarito */
+		--color-2: #8E8B63; /* verde fuerte */
+		--color-3: #CB8587; /* rosa fuerte */
+		--color-4: #EDDADA; /* rosa clarito */
+	}
+	html {
+		scroll-behavior: smooth;
+		background: var(--color-1);
+	}
+	body {
+		background: var(--color-1);
+		color: var(--color-2);
+	}
+	/* Fuente Parisienne para todos los encabezados */
+	h1, h2, h3, h4, h5, h6 {
+		font-family: 'Parisienne', cursive !important;
+		letter-spacing: 0.5px;
+	}
+	.text-shadow {
+		text-shadow: 2px 2px 4px rgba(142,139,99,0.8); /* verde fuerte sombra */
+	}
+	@media (max-width: 768px) {
+		.container {
+			padding-left: 1rem;
+			padding-right: 1rem;
+		}
+	}
+	.sticky-bg {
+		position: sticky;
+		top: 0;
+		height: 100vh;
+		width: 100vw;
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		z-index: 0;
+		/* overlay color-2 for a subtle tint */
+		box-shadow: 0 0 0 100vw rgba(142,139,99,0.08) inset;
+	}
+	.bg-overlay {
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+	}
+	.message-stack {
+		position: absolute;
+		inset: 0;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: stretch;
+		pointer-events: none;
+		z-index: 2;
+	}
+	.message-section {
+		height: 100vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: opacity 0.5s, transform 0.5s;
+		opacity: 0;
+		transform: translateY(40px);
+		will-change: opacity, transform;
+	}
+	.message-section.active {
+		opacity: 1;
+		transform: translateY(0);
+	}
+	.message-section.above {
+		opacity: 0;
+		transform: translateY(-40px);
+	}
+	/* Sección normal después del fondo */
+	.bg-gradient-to-b {
+		background: linear-gradient(to bottom, var(--color-1), var(--color-2));
+	}
+	/* Cards */
+	.bg-white\/10 {
+		background: var(--color-4);
+		opacity: 0.95;
+	}
+	.backdrop-blur-sm {
+		/* opcional: mantener blur si se desea */
+	}
+	.text-gray-300 {
+		color: var(--color-2);
+	}
+	/* Sección final */
+	.bg-white {
+		background: var(--color-4) !important;
+	}
+	.text-gray-900 {
+		color: var(--color-2) !important;
+	}
+	/* Botón principal */
+	.bg-blue-600, .bg-blue-700 {
+		background: var(--color-3) !important;
+	}
+	.bg-blue-600:hover, .bg-blue-700:hover {
+		background: #a85e61 !important; /* un poco más oscuro del rosa fuerte */
+	}
+	.text-white {
+		color: #fff !important;
+	}
+	/* Otros detalles/acento */
+	.text-lg, .text-xl, .text-3xl, .text-4xl, .font-bold, .font-semibold {
+		color: var(--color-2);
+	}
+</style>

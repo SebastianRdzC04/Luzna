@@ -1,0 +1,54 @@
+---
+
+---
+
+<div class="h-screen w-full bg-[#EDDADA] text-[#8E8B63]">
+    <div class="flex flex-col items-center  pt-3">
+        <div class=" mb-2">
+          <img src="iconos/gatitoo.png" class="w-[20%] mx-auto" alt="">
+          <h1 class="text-[40px] font-bold ">Codigo de Vestimenta</h1>
+          <h1 class="text-center text-3xl font-bold text-black">Formal</h1>
+        </div>
+        <div class="grid grid-cols-[2fr_1fr] gap-4 p-4 h-1/2">
+          <div>
+            <img src="iconos/cabeza-nabo.png" alt="" class="w-full h-full ">
+          </div>
+          <div>
+            <h2 class="text-2xl text-start font-bold">Paleta de Colores</h2>
+          </div>
+        </div>
+        <div class="w-[80%] bg-[#CB8587]/40 p-4 rounded-2xl">
+          <p class="text-center text-white font-bold">Ven como si caminaras por un bosque encantado.
+            Colores suaves, tierra, cielo, musgo y viento.
+            Ropa que fluya, como si pudieras volar con ella.
+          </p>
+        </div>
+
+    </div>    
+</div>
+<script is:inline>
+  // Animación: fade-in desde abajo cuando la imagen entra en pantalla
+  window.addEventListener('DOMContentLoaded', () => {
+    const img = document.getElementById('codigo-img');
+    if (!img) return;
+    const observer = new window.IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            img.classList.remove('opacity-0', 'translate-y-8');
+            img.classList.add('opacity-100', 'translate-y-0');
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+    observer.observe(img);
+  });
+</script>
+<style>
+/* Tailwind ya maneja las clases, pero aseguramos transición suave */
+#codigo-img {
+  will-change: opacity, transform;
+}
+</style>

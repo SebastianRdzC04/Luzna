@@ -1,0 +1,25 @@
+---
+
+const imagenesUrl = [
+    "fotosLuz/2.JPG",
+    "fotosLuz/3.JPG",
+    "fotosLuz/4.JPG",
+    "fotosLuz/5.JPG",
+    "fotosLuz/7.JPG",
+    "fotosLuz/8.JPG",
+]
+import Carrousel from '../react/Carrousel'
+---
+
+<div class="w-full h-screen bg-gradient-to-b from-[#D6D4AD] to-[#8E8B63] relative flex flex-col">
+    <img src="iconos/patito.png" class="w-[20%] mx-auto pt-5" alt="">
+    <h2 class="text-5xl font-bold mb-10 text-shadow text-white text-center">Galeria de Fotos</h2>
+    <Carrousel imagenes={imagenesUrl} client:load />
+    <div class="mx-auto pt-30  h-[100px] w-[80%]">
+        <div class="bg-[#CB8587]/40 p-4 rounded-2xl">
+            <p class="text-white text-center text-xl font-thin">Gracias por ser parte de esta historia.
+            Te esperamos con el corazón abierto,
+            como si fuera una escena más en nuestro propio viaje Ghibli</p>
+        </div>
+    </div>
+</div>

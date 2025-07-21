@@ -1,0 +1,150 @@
+---
+
+---
+
+
+<style>
+    h1, h2, h3, h4 {
+        color: #8E8B63;
+    }
+    /* Animación para mover arriba y abajo */
+    @keyframes bounce-y {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(18px); }
+    }
+    .animate-bounce-y {
+        animation: bounce-y 1.2s infinite alternate;
+    }
+</style>
+
+
+<div class="min-h-screen w-full bg-[#EDDADA] ">
+
+    <div class="container mx-auto px-6 py-1">
+        
+        <div class="max-w-2xl mx-auto text-center">
+            <div class="flex flex-col md:flex-row md:items-start md:justify-center md:gap-10 relative">
+                <div class="flex-1 mb-5 md:mb-0">
+                    <img src="iconos/fueguito.png" class="w-[30%] mx-auto" alt="">
+                    <h2 class="text-7xl  font-bold">Ubicacion:</h2>
+                    
+                        <!-- Capa de borde decorativo -->
+
+                        <!-- Contenido principal -->
+                        <div class="relative z-10">
+                            <p class=" text-white font-bold ">Click en la imagen para ver la ubicacion en el mapa</p>
+                            <svg class="mx-auto mb-5 animate-bounce-y" xmlns="http://www.w3.org/2000/svg" width="54" height="54" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M7 9a1 1 0 0 0-.707 1.707l5 5a1 1 0 0 0 1.414 0l5-5A1 1 0 0 0 17 9z" clip-rule="evenodd"/></svg>
+                            <img src="iconos/altozano.webp" class="w-full rounded-xl border-2 border-white shadow-md" alt="">
+                            <p class="mt-5 font-semibold text-3xl mb-5 text-white drop-shadow-sm">Altozano La Nueva Laguna</p>
+                            <p class="font-bold text-sm">Direccion: Carretera la Union KM. 1.5 Nueva Laguna 35140 Gomez Palacio</p>
+                        </div>
+
+                </div>
+                <!-- Línea divisoria -->
+                <div class="hidden md:block absolute left-1/2 top-0 h-full w-px bg-[var(--color-2)] opacity-40"></div>
+                <div class="block md:hidden w-full h-[3px] bg-[var(--color-2)] opacity-40 my-10"></div>
+                <div class="flex-1">
+                    <h2 class="text-6xl font-bold  md:mt-0">Intinerario:</h2>
+                    <div class="timeline-carousel-wrapper w-full overflow-x-auto mt-4 relative">
+                        <!-- Flecha indicadora de scroll -->
+                        <div class="scroll-arrow hidden md:block absolute right-2 top-1/2 -translate-y-1/2 z-20 pointer-events-none">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                                <path d="M8 5l7 7-7 7" stroke="#8E8B63" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="scroll-arrow-mobile md:hidden flex justify-center  mb-[-1.5rem]">
+                            <h6 class="text-black font-bold">Desliza a la derecha</h6>
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="animate-bounce-x">
+                                <path d="M8 5l7 7-7 7" stroke="#8E8B63" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="timeline-carousel flex gap-6 px-6 py-8" style="min-width: 600px;">
+                            <!-- Ejemplo de tarjetas de la línea de tiempo -->
+                            <div class="timeline-card flex-shrink-0 bg-white/10 backdrop-blur-sm rounded-lg p-6 min-w-[250px] max-w-xs text-center border border-[var(--color-2)]">
+                                <h5 class="font-bold text-4xl mb-2" style="color:var(--color-3)">Sesión Fotográfica</h5>
+                                <p class="text-md">6:00 pm</p>
+                                <p class="text-md text-center" style="color:var(--color-2)">Te espero para tomarnos unas fotos de recuerdo antes de empezar la fiesta</p>
+                            </div>
+                            <div class="timeline-card flex-shrink-0 bg-white/10 backdrop-blur-sm rounded-lg p-6 min-w-[250px] max-w-xs text-center border border-[var(--color-2)]">
+                                <h5 class="font-bold text-4xl mb-2" style="color:var(--color-3)"> Recepción </h5>
+                                <p class="text-md text-center"> 7:00 pm </p>
+                                <p class="text-sm" style="color:var(--color-2)">A partir de este momento puedes dejarte llevar por la magia de esta noche. <br> Te asignaremos tu mesa para que compartamos momentos increíbles</p>
+                            </div>
+                            <div class="timeline-card flex-shrink-0 bg-white/10 backdrop-blur-sm rounded-lg p-6 min-w-[250px] max-w-xs text-center border border-[var(--color-2)]">
+                                <h5 class="font-bold text-4xl mb-2" style="color:var(--color-3)">Vals</h5>
+                                <p class="text-xl" style="color:var(--color-2)">Vals con papás <br> e  <br>invitados</p>
+                            </div>
+                            <div class="timeline-card flex-shrink-0 bg-white/10 backdrop-blur-sm rounded-lg p-6 min-w-[250px] max-w-xs text-center border border-[var(--color-2)]">
+                                <h5 class="font-bold text-4xl mb-2" style="color:var(--color-3)">Cena</h5>
+                                <p class="text-xl" style="color:var(--color-2)">Compartamos juntos <br> la mesa</p>
+                            </div>
+                            <div class="timeline-card flex-shrink-0 bg-white/10 backdrop-blur-sm rounded-lg p-6 min-w-[250px] max-w-xs text-center border border-[var(--color-2)]">
+                                <h5 class="font-bold text-4xl mb-2" style="color:var(--color-3)">Baile</h5>
+                                <p class="text-xl" style="color:var(--color-2)">Compartamos juntos <br> la pista</p>
+                            </div>
+                            <div class="timeline-card flex-shrink-0 bg-white/10 backdrop-blur-sm rounded-lg p-6 min-w-[250px] max-w-xs text-center border border-[var(--color-2)]">
+                                <h5 class="font-bold text-4xl mb-2" style="color:var(--color-3)">Fin de la fiesta</h5>
+                                <p class="text-md">12:00 am</p>
+                                <p class="text-xl" style="color:var(--color-2)">Gracias por compartir con nosotros esta noche mágica.</p>
+                            </div>
+                            <!-- Puedes agregar más tarjetas aquí -->
+                        </div>
+                    </div>
+                    <style>
+                        .timeline-carousel-wrapper {
+                            scrollbar-width: thin;
+                            scrollbar-color: var(--color-3) var(--color-4);
+                        }
+                        .timeline-carousel-wrapper::-webkit-scrollbar {
+                            height: 8px;
+                            background: var(--color-4);
+                        }
+                        .timeline-carousel-wrapper::-webkit-scrollbar-thumb {
+                            background: var(--color-3);
+                            border-radius: 4px;
+                        }
+                        .timeline-card {
+                            box-shadow: 0 2px 8px rgba(142,139,99,0.08);
+                            transition: transform 0.2s, box-shadow 0.2s;
+                        }
+                        .timeline-card:hover {
+                            transform: translateY(-6px) scale(1.03);
+                            box-shadow: 0 6px 16px rgba(203,133,135,0.18);
+                        }
+                        /* Flecha animada para indicar scroll horizontal */
+                        .scroll-arrow svg, .scroll-arrow-mobile svg {
+                            filter: drop-shadow(0 2px 4px rgba(142,139,99,0.15));
+                            opacity: 0.7;
+                            animation: bounce-x 1.2s infinite alternate;
+                        }
+                        @keyframes bounce-x {
+                            0% { transform: translateX(0); }
+                            100% { transform: translateX(12px); }
+                        }
+                        .scroll-arrow-mobile {
+                            margin-bottom: -1.5rem;
+                        }
+                        @media (max-width: 600px) {
+                            .timeline-carousel {
+                                gap: 1rem;
+                                padding-left: 0.5rem;
+                                padding-right: 0.5rem;
+                            }
+                            .timeline-card {
+                                min-width: 180px;
+                                padding: 1rem;
+                            }
+                            .scroll-arrow {
+                                display: none !important;
+                            }
+                            .scroll-arrow-mobile {
+                                display: flex !important;
+                            }
+                        }
+                    </style>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
