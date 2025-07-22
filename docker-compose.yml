@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile
     ports:
       - "2010:80"
-    container_name: frontend-dmr
+    container_name: frontend-luz
     restart: unless-stopped
     # depends_on: [other services if needed]
   # ...existing code...
