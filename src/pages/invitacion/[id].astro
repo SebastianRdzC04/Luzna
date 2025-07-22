@@ -1,30 +1,32 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import AcceptInvitation from "../components/react/AcceptInvitation";
-import PersonasImportantes from "../components/astro/PersonasImportantes.astro"
-import CodigoDeVestimenta from "../components/astro/CodigoDeVestimenta.astro";
-import UbicacionEIntinerario from "../components/astro/UbicacionEIntinerario.astro";
-import SugerenciasDeHospedaje from "../components/astro/SugerenciasDeHospedaje.astro";
-import SeccionFoto2 from "../components/astro/SeccionFoto2.astro";
-import MesaDeRegalos from "../components/astro/MesaDeRegalos.astro";
-import Instagram from "../components/astro/Instagram.astro";
-import SeccionFinal from "../components/astro/SeccionFinal.astro";
-
-const nombreInvitado = "Familia Robles";
-const numInvitados = 5;
-
-const fechaEvento = new Date('2025-09-13T19:00:00');
+import Layout from '../../layouts/Layout.astro';
+import AcceptInvitation from "../../components/react/AcceptInvitation";
+import PersonasImportantes from "../../components/astro/PersonasImportantes.astro"
+import CodigoDeVestimenta from "../../components/astro/CodigoDeVestimenta.astro";
+import UbicacionEIntinerario from "../../components/astro/UbicacionEIntinerario.astro";
+import SugerenciasDeHospedaje from "../../components/astro/SugerenciasDeHospedaje.astro";
+import SeccionFoto2 from "../../components/astro/SeccionFoto2.astro";
+import MesaDeRegalos from "../../components/astro/MesaDeRegalos.astro";
+import Instagram from "../../components/astro/Instagram.astro";
+import SeccionFinal from "../../components/astro/SeccionFinal.astro";
 
 import { getCollection } from 'astro:content';
 
+export async function getStaticPaths() {
+	const guests = await getCollection('guest');
+	return guests.map(guest => ({
+		params: { id: guest.id }
+	}));
+}
+
+const { id } = Astro.params;
 const guests = await getCollection('guest');
+const guest = guests.find(g => g.id === id);
 
-const guestNames = guests.map(guest => guest.data.name);
+const nombreInvitado = guest?.data.name ?? "Invitado";
+const numInvitados = guest?.data.numberOfGuests ?? 1;
 
-console.log('Guest names:', guestNames);
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const fechaEvento = new Date('2025-09-13T19:00:00');
 ---
 
 <Layout>
@@ -34,7 +36,7 @@ console.log('Guest names:', guestNames);
 			<!-- Imagen de fondo sticky -->
 			<div
 				class="sticky-bg"
-				style="background-image: url('fotosLuz/6.JPG'); top:0;"
+				style="background-image: url('/fotosLuz/6.JPG'); top:0;"
 			>
 				<div class="bg-overlay"></div>
 			</div>
@@ -98,7 +100,7 @@ console.log('Guest names:', guestNames);
 		<div class="w-full h-screen bg-[#8E8B63] relative flex flex-col pt-30 ">
 			<h1 class="text-white text-center font-bold text-4xl">Solamente tienes que seguir a tu corazón y mantener la sonrisa</h1>
 			<p class="text-white font-black text-2xl text-center pt-4"> - Luz Natalia - </p>
-			<img src="iconos/fondo.png" class="absolute bottom-0 left-0 w-full" alt="">
+			<img src="/iconos/fondo.png" class="absolute bottom-0 left-0 w-full" alt="">
 
 		</div>
 
