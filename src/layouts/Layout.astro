@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import LottieAnimation from 'astro-integration-lottie/Lottie.astro'
 
 const description = '¡Hola! Soy Luz Natalia y estoy emocionada de invitarte a mi fiesta de XV años. Será una noche mágica llena de sorpresas, música y baile. ¡No puedo esperar para celebrar contigo!';
 const title = 'XV Luz Natalia';
@@ -147,6 +148,37 @@ const url = 'https://luz.kysedomi.lat';
 		</style>
 	</head>
 	<body>
+		<!-- Preloader -->
+		<div id="preloader" style="
+			position: fixed;
+			inset: 0;
+			width: 100vw;
+			height: 100vh;
+			background: linear-gradient(135deg, #EDDADA 60%, #CB8587 100%);
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			z-index: 99999;
+			transition: opacity 0.6s;
+		">
+			<div style="width: 180px; max-width: 80vw;">
+				<LottieAnimation src='/totorowalk.json' autoplay="visible"/>
+			</div>
+			<p style="
+				margin-top: 2rem;
+				font-family: 'Montserrat', sans-serif;
+				font-size: 1.5rem;
+				color: #8E8B63;
+				font-weight: 600;
+				letter-spacing: 1px;
+				text-shadow: 0 2px 8px #EDDADA;
+			">
+				Cargando...
+			</p>
+		</div>
+		<!-- Fin Preloader -->
+
 		<slot />
 
 		<audio id="bg-music" autoplay loop>
@@ -179,11 +211,18 @@ const url = 'https://luz.kysedomi.lat';
 			</div>
 		</div>
 
-		<div id="loader">
-
-		</div>
-
 		<script>
+			// Preloader hide logic
+			window.addEventListener('DOMContentLoaded', () => {
+				const preloader = document.getElementById('preloader');
+				setTimeout(() => {
+					preloader.style.opacity = '0';
+					setTimeout(() => {
+						preloader.style.display = 'none';
+					}, 600);
+				}, 1200); // Puedes ajustar el tiempo si quieres que dure más/menos
+			});
+
 			const audio = document.getElementById('bg-music');
 			const toggleBtn = document.getElementById('music-toggle');
 			const musicIcon = document.getElementById('music-icon');
@@ -197,14 +236,6 @@ const url = 'https://luz.kysedomi.lat';
 			const iconSlider = document.getElementById('icon-slider');
 			const iconChevronUp = document.getElementById('icon-chevron-up');
 			const volumeLabel = document.getElementById('volume-label');
-
-			const animacion = lottie.loadAnimation({
-				container: document.getElementById('loader'),
-				renderer: 'svg',
-				loop: true,
-				autoplay: true,
-				path: '/Weee.json'
-			});
 
 			let isPlaying = true;
 			let volumeVisible = false;
