@@ -1,0 +1,12 @@
+services:
+  # ...existing code...
+  dmr-frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "2010:80"
+    container_name: frontend-dmr
+    restart: unless-stopped
+    # depends_on: [other services if needed]
+  # ...existing code...
