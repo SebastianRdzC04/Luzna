@@ -1,1 +1,14 @@
 @import "tailwindcss";
+@import "tailwindcss-animated";
+
+h1, h2, h3, h4 {
+    font-family: 'Parisienne', cursive !important;
+    letter-spacing: 0.5px;
+}
+p {
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+:root {
+    max-width: screen;
+}

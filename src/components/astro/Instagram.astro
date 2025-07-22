@@ -3,7 +3,8 @@
 
 <div class="w-full h-screen bg-[url('/fotosLuz/ultimafoto.jpg')] bg-cover bg-center flex items-center justify-center relative">
   <div
-    class="relative h-[60%] w-[90%] max-w-md z-10 flex flex-col items-center justify-center rounded-2xl text-center px-6 py-12 mx-auto bg-white/10 backdrop-blur-sm shadow-2xl border"
+    id="animado-instagram"
+    class="relative h-[60%] w-[90%] max-w-md z-10 flex flex-col items-center justify-center rounded-2xl text-center px-6 py-12 mx-auto bg-white/10 backdrop-blur-sm shadow-2xl border opacity-0"
     style="color: var(--color-2); border-color: var(--color-2);"
   >
     <h2
@@ -38,4 +39,28 @@
       Seguir en Instagram
     </a>
   </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const elInstagram = document.getElementById('animado-instagram');
+      if (elInstagram) {
+        const observerInstagram = new IntersectionObserver(
+          (entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                elInstagram.classList.add('animate-fade');
+                elInstagram.classList.remove('opacity-0');
+                elInstagram.classList.add('opacity-100');
+              } else {
+                elInstagram.classList.remove('animate-fade');
+                elInstagram.classList.remove('opacity-100');
+                elInstagram.classList.add('opacity-0');
+              }
+            });
+          },
+          { threshold: 0.2 }
+        );
+        observerInstagram.observe(elInstagram);
+      }
+    });
+  </script>
 </div>

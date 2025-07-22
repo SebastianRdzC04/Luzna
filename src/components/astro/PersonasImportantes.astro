@@ -2,10 +2,8 @@
 
 ---
 
-
-
 <div class="min-h-screen w-screen 985 text-white relative">
-    <div class="flex flex-col items-center  h-full">
+    <div class="flex flex-col items-center  h-full pb-20">
         <div class="flex justify-center flex-col content-center pt-5">
             <img src="iconos/bolita-blanca.png" class="w-[20%] mx-auto" alt="">
             <h2 class="text-5xl text-center font-bold text-white">Personas importantes</h2>
@@ -15,23 +13,23 @@
             <p>Todo lo bueno que hay en mí viene de ustedes. Gracias por ser mi hogar, mi calma y mi magia. Los quiero con todo mi corazón</p>
         </div>
         <div class="grid grid-cols-2 w-full gap-5 mt-10 h-full pb-4 px-4 max-w-3xl">
-            <div class="flex items-center justify-center w-full h-full">
-                <div class="w-full h-full bg-[#92ad8c] rounded-full bg-[url('iconos/flores.png')]  border-2 border-white shadow-lg flex flex-col items-center justify-center p-6 min-h-[160px]">
+            <div id="roberto-anim" class="flex items-center justify-center w-full h-full" style="position:relative;overflow:hidden;">
+                <div class="w-full h-full bg-[#92ad8c] rounded-full bg-[url('iconos/flores.png')]  border-2 border-white shadow-lg flex flex-col items-center justify-center p-6 min-h-[160px] opacity-0" id="roberto-inner">
                     <p class="text-center font-bold text-white" style="">Roberto Carlos Robles Medrano</p>
                 </div>
             </div>
-            <div class="flex items-center justify-center w-full h-full">
-                <div class="w-full h-full bg-[#92ad8c] bg-[url('iconos/flores.png')]   rounded-full border-2 border-white shadow-lg flex flex-col items-center justify-center p-6 min-h-[160px]">
+            <div id="dora-anim" class="flex items-center justify-center w-full h-full" style="position:relative;overflow:hidden;">
+                <div class="w-full h-full bg-[#92ad8c] bg-[url('iconos/flores.png')] rounded-full border-2 border-white shadow-lg flex flex-col items-center justify-center p-6 min-h-[160px] opacity-0" id="dora-inner">
                     <p class=" text-center font-bold text-white" style="">Dora Elsa Ledesma Castruita</p>
                 </div>
             </div>
-            <div class="flex items-center justify-center w-full h-full">
-                <div class="w-full h-full bg-[#92ad8c] bg-[url('iconos/flores.png')]   rounded-full border-2 border-white shadow-lg flex flex-col items-center justify-center p-6 min-h-[160px]">
+            <div id="miryam-anim" class="flex items-center justify-center w-full h-full" style="position:relative;overflow:hidden;">
+                <div class="w-full h-full bg-[#92ad8c] bg-[url('iconos/flores.png')] rounded-full border-2 border-white shadow-lg flex flex-col items-center justify-center p-6 min-h-[160px] opacity-0" id="miryam-inner">
                     <p class=" text-center font-bold text-white" style="">Miryam Esperanza Robles Ledesma</p>
                 </div>
             </div>
-            <div class="flex items-center justify-center w-full h-full">
-                <div class="w-full h-full bg-[url('iconos/flores.png')]  bg-[#92ad8c] rounded-full border-2 border-white shadow-lg flex flex-col items-center justify-center p-6 min-h-[160px]">
+            <div id="elsa-anim" class="flex items-center justify-center w-full h-full" style="position:relative;overflow:hidden;">
+                <div class="w-full h-full bg-[url('iconos/flores.png')]  bg-[#92ad8c] rounded-full border-2 border-white shadow-lg flex flex-col items-center justify-center p-6 min-h-[160px] opacity-0" id="elsa-inner">
                     <p class=" text-center font-bold text-white" style="">Elsa Paola Robles Ledesma</p>
                 </div>
             </div>
@@ -41,3 +39,70 @@
         <img src="iconos/totoroFamily.png" alt="">
     </div>
 </div>
+
+
+<script type="module">
+    // Animación para Dora Elsa Ledesma Castruita usando Tailwind animate-fade-left
+    const doraAnim = document.getElementById('dora-anim');
+    const doraInner = document.getElementById('dora-inner');
+    if (doraAnim && doraInner) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    doraInner.classList.add('animate-fade-left');
+                } else {
+                    doraInner.classList.remove('animate-fade-left');
+                }
+            });
+        }, { threshold: 0.5 });
+        observer.observe(doraAnim);
+    }
+
+    // Animación para Roberto Carlos Robles Medrano usando Tailwind animate-fade-right
+    const robertoAnim = document.getElementById('roberto-anim');
+    const robertoInner = document.getElementById('roberto-inner');
+    if (robertoAnim && robertoInner) {
+        const observerRoberto = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    robertoInner.classList.add('animate-fade-right');
+                } else {
+                    robertoInner.classList.remove('animate-fade-right');
+                }
+            });
+        }, { threshold: 0.5 });
+        observerRoberto.observe(robertoAnim);
+    }
+
+    // Animación para Miryam Esperanza Robles Ledesma usando Tailwind animate-fade-right
+    const miryamAnim = document.getElementById('miryam-anim');
+    const miryamInner = document.getElementById('miryam-inner');
+    if (miryamAnim && miryamInner) {
+        const observerMiryam = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    miryamInner.classList.add('animate-fade-right');
+                } else {
+                    miryamInner.classList.remove('animate-fade-right');
+                }
+            });
+        }, { threshold: 0.5 });
+        observerMiryam.observe(miryamAnim);
+    }
+
+    // Animación para Elsa Paola Robles Ledesma usando Tailwind animate-fade-left
+    const elsaAnim = document.getElementById('elsa-anim');
+    const elsaInner = document.getElementById('elsa-inner');
+    if (elsaAnim && elsaInner) {
+        const observerElsa = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    elsaInner.classList.add('animate-fade-left');
+                } else {
+                    elsaInner.classList.remove('animate-fade-left');
+                }
+            });
+        }, { threshold: 0.5 });
+        observerElsa.observe(elsaAnim);
+    }
+</script>

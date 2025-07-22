@@ -3,52 +3,57 @@
 ---
 
 <div class="h-screen w-full bg-[#EDDADA] text-[#8E8B63]">
-    <div class="flex flex-col items-center  pt-3">
-        <div class=" mb-2">
+    <div class="flex flex-col items-center pt-3">
+        <div class="mb-2" id="animado-titulo" class="opacity-0">
           <img src="iconos/gatitoo.png" class="w-[20%] mx-auto" alt="">
-          <h1 class="text-[40px] font-bold ">Codigo de Vestimenta</h1>
+          <h1 class="text-[40px] font-bold">Codigo de Vestimenta</h1>
           <h1 class="text-center text-3xl font-bold text-black">Formal</h1>
         </div>
         <div class="grid grid-cols-[2fr_1fr] gap-4 p-4 h-1/2">
-          <div>
-            <img src="iconos/cabeza-nabo.png" alt="" class="w-full h-full ">
+          <div id="animado-img" class="animate-fade-right opacity-0">
+            <img src="iconos/cabeza-nabo.png" alt="" class="w-full h-full">
           </div>
-          <div>
-            <h2 class="text-2xl text-start font-bold">Paleta de Colores</h2>
+          <div id="animado-paleta" class="opacity-0">
+            <h2 class="text-2xl text-start font-bold animate-fade-down">Paleta de Colores</h2>
           </div>
         </div>
-        <div class="w-[80%] bg-[#CB8587]/40 p-4 rounded-2xl">
+        <div id="animado-texto" class="w-[80%] bg-[#CB8587]/40 p-4 rounded-2xl animate-fade-up opacity-0">
           <p class="text-center text-white font-bold">Ven como si caminaras por un bosque encantado.
             Colores suaves, tierra, cielo, musgo y viento.
             Ropa que fluya, como si pudieras volar con ella.
           </p>
         </div>
-
-    </div>    
-</div>
-<script is:inline>
-  // Animación: fade-in desde abajo cuando la imagen entra en pantalla
-  window.addEventListener('DOMContentLoaded', () => {
-    const img = document.getElementById('codigo-img');
-    if (!img) return;
-    const observer = new window.IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            img.classList.remove('opacity-0', 'translate-y-8');
-            img.classList.add('opacity-100', 'translate-y-0');
-            observer.disconnect();
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const animados = [
+          { id: 'animado-titulo', anim: '' },
+          { id: 'animado-img', anim: 'animate-fade-right' },
+          { id: 'animado-paleta', anim: 'animate-fade-down' },
+          { id: 'animado-texto', anim: 'animate-fade-up' }
+        ];
+        animados.forEach(({ id, anim }) => {
+          const el = document.getElementById(id);
+          if (el) {
+            const observer = new IntersectionObserver(
+              (entries) => {
+                entries.forEach(entry => {
+                  if (entry.isIntersecting) {
+                    if (anim) el.classList.add(anim);
+                    el.classList.remove('opacity-0');
+                    el.classList.add('opacity-100');
+                  } else {
+                    if (anim) el.classList.remove(anim);
+                    el.classList.remove('opacity-100');
+                    el.classList.add('opacity-0');
+                  }
+                });
+              },
+              { threshold: 0.2 }
+            );
+            observer.observe(el);
           }
         });
-      },
-      { threshold: 0.4 }
-    );
-    observer.observe(img);
-  });
-</script>
-<style>
-/* Tailwind ya maneja las clases, pero aseguramos transición suave */
-#codigo-img {
-  will-change: opacity, transform;
-}
-</style>
+      });
+    </script>
+</div>

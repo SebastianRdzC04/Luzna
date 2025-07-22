@@ -36,7 +36,7 @@ const AcceptInvitation: React.FC<AcceptInvitationProps> = ({ nombreInvitado, num
     <div className="w-screen h-screen bg-[url('/fotosLuz/9.jpg')] bg-cover bg-center bg-no-repeat flex items-center justify-center relative">
 
       <div
-        className="relative h-[80%] w-[85%] z-10 flex flex-col items-center justify-between rounded-2xl text-center px-6 py-12 mx-auto bg-white/10 backdrop-blur-sm shadow-2xl border border-[var(--color-2)]"
+        className="relative h-[80%] w-[85%] z-10 flex flex-col items-center justify-between rounded-2xl text-center px-6 py-12 mx-auto bg-white/10 backdrop-blur-sm shadow-2xl border border-[var(--color-2)] animate-fade"
         style={{ color: "#4B3B28" }}
       >
         <div className="mb-6">

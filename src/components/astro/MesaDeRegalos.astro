@@ -9,14 +9,14 @@
         <h1 class="text-5xl pt-5 font-bold">Mesa de Regalos</h1>
         <div class="mx-auto mt-3 mb-2 w-[250px] h-1 bg-[#92ad8c] shadow-[0_0_20px_#aeea9d] rounded-full opacity-100"></div>
     </div>
-    <div class="w-full flex text-white justify-center pt-12 pb-10">
+    <div id="animado" class="w-full flex text-white justify-center pt-12 pb-10 animate-fade-right">
         <p class="font-bold text-center mx-5">
             Tu presencia es el regalo más valioso para nosotros,
             pero si deseas acompañarnos con un detalle,
             con cariño y gratitud, lo recibiremos con el corazón abierto.
         </p>
     </div>
-    <div class="flex flex-col w-full items-center justify-center my-auto">
+    <div id="animado-boton" class="flex flex-col w-full items-center justify-center my-auto animate-fade-up opacity-0">
         <button class="transition-transform duration-150 active:scale-90">
             <img src="iconos/lluvia-sobres.png" alt="" class="transition-transform w-[80%] mx-auto duration-150" />
         </button>
@@ -25,4 +25,45 @@
     <style>
       
     </style>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const el = document.getElementById('animado');
+        if (el) {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                  el.classList.add('animate-fade-right');
+                } else {
+                  el.classList.remove('animate-fade-right');
+                }
+              });
+            },
+            { threshold: 0.2 }
+          );
+          observer.observe(el);
+        }
+
+        const elBoton = document.getElementById('animado-boton');
+        if (elBoton) {
+          const observerBoton = new IntersectionObserver(
+            (entries) => {
+              entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                  elBoton.classList.add('animate-fade-up');
+                  elBoton.classList.remove('opacity-0');
+                  elBoton.classList.add('opacity-100');
+                } else {
+                  elBoton.classList.remove('animate-fade-up');
+                  elBoton.classList.remove('opacity-100');
+                  elBoton.classList.add('opacity-0');
+                }
+              });
+            },
+            { threshold: 0.2 }
+          );
+          observerBoton.observe(elBoton);
+        }
+      });
+    </script>
 </div>
