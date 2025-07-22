@@ -1,6 +1,6 @@
 services:
   # ...existing code...
-  dmr-frontend:
+  frontend-luz:
     build:
       context: .
       dockerfile: Dockerfile
