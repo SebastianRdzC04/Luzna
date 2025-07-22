@@ -179,6 +179,10 @@ const url = 'https://luz.kysedomi.lat';
 			</div>
 		</div>
 
+		<div id="loader">
+
+		</div>
+
 		<script>
 			const audio = document.getElementById('bg-music');
 			const toggleBtn = document.getElementById('music-toggle');
@@ -193,6 +197,14 @@ const url = 'https://luz.kysedomi.lat';
 			const iconSlider = document.getElementById('icon-slider');
 			const iconChevronUp = document.getElementById('icon-chevron-up');
 			const volumeLabel = document.getElementById('volume-label');
+
+			const animacion = lottie.loadAnimation({
+				container: document.getElementById('loader'),
+				renderer: 'svg',
+				loop: true,
+				autoplay: true,
+				path: '/Weee.json'
+			});
 
 			let isPlaying = true;
 			let volumeVisible = false;
