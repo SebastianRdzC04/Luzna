@@ -40,10 +40,221 @@ const url = 'https://luz.kysedomi.lat';
 			p {
 				font-family: 'Montserrat', sans-serif !important;
 			}
+			#music-controls {
+				position: fixed;
+				top: 1.5rem;
+				left: 1.5rem;
+				z-index: 9999;
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+				gap: 0.7rem;
+			}
+			#music-toggle {
+				background: linear-gradient(135deg, #EDDADA 60%, #CB8587 100%);
+				border: 2px solid #8E8B63;
+				box-shadow: 0 2px 12px rgba(142,139,99,0.15);
+				border-radius: 9999px;
+				padding: 0.6rem 1rem;
+				font-size: 1.7rem;
+				cursor: pointer;
+				transition: background 0.3s, box-shadow 0.3s, border 0.3s;
+				color: #8E8B63;
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+			}
+			#music-toggle:hover {
+				background: linear-gradient(135deg, #CB8587 60%, #EDDADA 100%);
+				box-shadow: 0 4px 16px rgba(142,139,99,0.25);
+				border-color: #CB8587;
+			}
+			#volume-toggle {
+				background: linear-gradient(135deg, #EDDADA 60%, #CB8587 100%);
+				border: 2px solid #8E8B63;
+				box-shadow: 0 2px 12px rgba(142,139,99,0.10);
+				border-radius: 9999px;
+				padding: 0.3rem 0.7rem;
+				font-size: 1.1rem;
+				color: #8E8B63;
+				cursor: pointer;
+				transition: background 0.3s, box-shadow 0.3s, border 0.3s;
+				margin-top: 0.1rem;
+				display: flex;
+				align-items: center;
+				gap: 0.3rem;
+			}
+			#volume-toggle:hover {
+				background: linear-gradient(135deg, #CB8587 60%, #EDDADA 100%);
+				box-shadow: 0 4px 16px rgba(142,139,99,0.18);
+				border-color: #CB8587;
+			}
+			#volume-slider {
+				width: 120px;
+				background: rgba(255,255,255,0.85);
+				border-radius: 9999px;
+				padding: 0.3rem 0.7rem;
+				box-shadow: 0 2px 8px rgba(142,139,99,0.10);
+				border: 1px solid #CB8587;
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				opacity: 1;
+				visibility: visible;
+				transition: opacity 0.3s, visibility 0.3s, max-height 0.3s;
+				max-height: 60px;
+			}
+			#volume-slider.hidden {
+				opacity: 0;
+				visibility: hidden;
+				max-height: 0;
+				overflow: hidden;
+			}
+			#volume-slider input[type="range"] {
+				width: 80px;
+				accent-color: #CB8587;
+				background: transparent;
+				cursor: pointer;
+			}
+			#volume-slider label {
+				font-size: 1.1rem;
+				color: #8E8B63;
+				font-family: 'Montserrat', sans-serif;
+				font-weight: bold;
+			}
+			@media (max-width: 600px) {
+				#music-controls {
+					top: 0.7rem;
+					left: 0.7rem;
+					gap: 0.5rem;
+				}
+				#music-toggle {
+					font-size: 1.2rem;
+					padding: 0.4rem 0.7rem;
+				}
+				#volume-toggle {
+					font-size: 1rem;
+					padding: 0.3rem 0.6rem;
+				}
+				#volume-slider {
+					width: 90px;
+					padding: 0.2rem 0.4rem;
+				}
+				#volume-slider input[type="range"] {
+					width: 55px;
+				}
+			}
 		</style>
 	</head>
 	<body>
 		<slot />
+
+		<audio id="bg-music" autoplay loop>
+			<source src="/music/cancion.mp3" type="audio/mpeg" />
+			Tu navegador no soporta el audio.
+		</audio>
+
+		<div id="music-controls">
+			<button id="music-toggle" aria-label="Toggle music">
+				<span id="music-icon">
+					<!-- SVGs para los estados de música -->
+					<svg id="icon-sound-on" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24"><path fill="#8E8B63" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 1-2.25 3.89v-7.78A4.5 4.5 0 0 1 16.5 12zm2.5 0a7 7 0 0 1-3.5 6.06v-2.06a5 5 0 0 0 0-8v-2.06A7 7 0 0 1 19 12z"/></svg>
+					<svg id="icon-sound-off" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" style="display:none;"><path fill="#8E8B63" d="M16.5 12a4.5 4.5 0 0 1-2.25 3.89v-7.78A4.5 4.5 0 0 1 16.5 12zm2.5 0a7 7 0 0 1-3.5 6.06v-2.06a5 5 0 0 0 0-8v-2.06A7 7 0 0 1 19 12z"/><path fill="#8E8B63" d="M3 9v6h4l5 5V4L7 9H3zm16.5-1.5-13 13"/></svg>
+					<svg id="icon-sound-low" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" style="display:none;"><path fill="#8E8B63" d="M3 9v6h4l5 5V4L7 9H3zm7 3a4.5 4.5 0 0 1 2.25 3.89v-7.78A4.5 4.5 0 0 1 10 12z"/></svg>
+				</span>
+			</button>
+			<button id="volume-toggle" aria-label="Mostrar/ocultar volumen">
+				<span id="volume-toggle-icon">
+					<!-- SVG para mostrar/ocultar -->
+					<svg id="icon-slider" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="4" rx="2" fill="#8E8B63"/><circle cx="12" cy="12" r="3" fill="#CB8587" stroke="#8E8B63" stroke-width="1"/></svg>
+					<svg id="icon-chevron-up" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" style="display:none;"><path stroke="#8E8B63" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 15l6-6 6 6"/></svg>
+				</span>
+			</button>
+			<div id="volume-slider">
+				<label for="slider-vol" id="volume-label">
+					<!-- SVG volumen bajo -->
+					<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24"><path fill="#8E8B63" d="M3 9v6h4l5 5V4L7 9H3zm7 3a4.5 4.5 0 0 1 2.25 3.89v-7.78A4.5 4.5 0 0 1 10 12z"/></svg>
+				</label>
+				<input type="range" id="slider-vol" min="0" max="100" value="80" />
+			</div>
+		</div>
+
+		<script>
+			const audio = document.getElementById('bg-music');
+			const toggleBtn = document.getElementById('music-toggle');
+			const musicIcon = document.getElementById('music-icon');
+			const iconSoundOn = document.getElementById('icon-sound-on');
+			const iconSoundOff = document.getElementById('icon-sound-off');
+			const iconSoundLow = document.getElementById('icon-sound-low');
+			const slider = document.getElementById('slider-vol');
+			const volumeSlider = document.getElementById('volume-slider');
+			const volumeToggle = document.getElementById('volume-toggle');
+			const volumeToggleIcon = document.getElementById('volume-toggle-icon');
+			const iconSlider = document.getElementById('icon-slider');
+			const iconChevronUp = document.getElementById('icon-chevron-up');
+			const volumeLabel = document.getElementById('volume-label');
+
+			let isPlaying = true;
+			let volumeVisible = false;
+
+			function setMusicIcon(vol, playing) {
+				iconSoundOn.style.display = 'none';
+				iconSoundOff.style.display = 'none';
+				iconSoundLow.style.display = 'none';
+				if (!playing || vol === 0) {
+					iconSoundOff.style.display = '';
+				} else if (vol < 0.5) {
+					iconSoundLow.style.display = '';
+				} else {
+					iconSoundOn.style.display = '';
+				}
+			}
+
+			// Inicializa volumen
+			audio.volume = slider.value / 100;
+			setMusicIcon(audio.volume, isPlaying);
+
+			toggleBtn.addEventListener('click', () => {
+				if (isPlaying) {
+					audio.pause();
+					setMusicIcon(audio.volume, false);
+					toggleBtn.style.opacity = 0.7;
+				} else {
+					audio.play();
+					setMusicIcon(audio.volume, true);
+					toggleBtn.style.opacity = 1;
+				}
+				isPlaying = !isPlaying;
+			});
+
+			slider.addEventListener('input', (e) => {
+				const vol = e.target.value / 100;
+				audio.volume = vol;
+				setMusicIcon(vol, isPlaying);
+			});
+
+			audio.addEventListener('volumechange', () => {
+				setMusicIcon(audio.volume, isPlaying);
+			});
+
+			volumeToggle.addEventListener('click', () => {
+				volumeVisible = !volumeVisible;
+				if (volumeVisible) {
+					volumeSlider.classList.remove('hidden');
+					iconSlider.style.display = 'none';
+					iconChevronUp.style.display = '';
+				} else {
+					volumeSlider.classList.add('hidden');
+					iconSlider.style.display = '';
+					iconChevronUp.style.display = 'none';
+				}
+			});
+
+			// Oculta el control de volumen al inicio
+			volumeSlider.classList.add('hidden');
+			iconSlider.style.display = '';
+			iconChevronUp.style.display = 'none';
+		</script>
 	</body>
 </html>
 

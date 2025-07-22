@@ -17,13 +17,38 @@
         </p>
     </div>
     <div id="animado-boton" class="flex flex-col w-full items-center justify-center my-auto animate-fade-up opacity-0">
-        <button class="transition-transform duration-150 active:scale-90">
+        <button id="abrir-modal" class="transition-transform duration-150 active:scale-90">
             <img src="/iconos/lluvia-sobres.png" alt="" class="transition-transform w-[80%] mx-auto duration-150" />
         </button>
         <h1>Haz click arriba</h1>
     </div>
+
+    <!-- Modal -->
+    <div id="modal-regalo" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 bg-opacity-60 transition-opacity duration-200 opacity-0 pointer-events-none">
+      <div class="bg-[#f7f6e7] rounded-2xl shadow-lg p-8 max-w-sm w-[90%] text-center relative">
+        <button id="cerrar-modal" class="absolute top-3 right-3 text-[#92ad8c] text-2xl font-bold hover:text-[#6e8a6a]">&times;</button>
+        <h2 class="text-2xl font-bold text-[#92ad8c] mb-2">¡Gracias por tu cariño!</h2>
+        <p class="text-[#6e8a6a] mb-4">
+          En la fiesta habrá un lugar especial para dejar tu sobre.<br>
+          Si prefieres, puedes hacer una transferencia a la siguiente cuenta:
+        </p>
+        <div class="bg-[#e3e9d7] rounded-lg p-3 mb-2 shadow">
+          <span class="block text-[#92ad8c] font-semibold">Banco: BBVA</span>
+          <span class="block text-[#6e8a6a] font-semibold">Cuenta CLABE: 012060015071581322</span>
+          <span class="block text-[#92ad8c] font-semibold">A nombre de: Dora Elsa Ledesma Castruita</span>
+        </div>
+        <p class="text-xs text-[#b2b2b2]">¡Lo más importante es tu presencia!</p>
+      </div>
+    </div>
     <style>
-      
+      /* Modal styles */
+      #modal-regalo {
+        /* Already handled by Tailwind classes */
+      }
+      #modal-regalo.mostrar {
+        opacity: 1;
+        pointer-events: auto;
+      }
     </style>
     <script>
       document.addEventListener('DOMContentLoaded', () => {
@@ -63,6 +88,26 @@
             { threshold: 0.2 }
           );
           observerBoton.observe(elBoton);
+        }
+
+        // Modal logic
+        const abrirModalBtn = document.getElementById('abrir-modal');
+        const modal = document.getElementById('modal-regalo');
+        const cerrarModalBtn = document.getElementById('cerrar-modal');
+
+        if (abrirModalBtn && modal && cerrarModalBtn) {
+          abrirModalBtn.addEventListener('click', () => {
+            modal.classList.add('mostrar');
+          });
+          cerrarModalBtn.addEventListener('click', () => {
+            modal.classList.remove('mostrar');
+          });
+          // Cerrar modal al hacer click fuera del contenido
+          modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+              modal.classList.remove('mostrar');
+            }
+          });
         }
       });
     </script>

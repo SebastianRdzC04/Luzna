@@ -2,26 +2,39 @@
 ---
 
 <div class="min-h-screen w-full bg-[#D6D4AD] text-[#8E8B63] flex flex-col items-center justify-start pt-5 pb-16">
-    <img src="/iconos/ratoncito.png" class="w-[30%] mx-auto" alt="">
+    <img src="iconos/ratoncito.png" class="w-[30%] mx-auto" alt="">
     <h1 class="font-[Parisienne] text-4xl font-bold text-center mb-10 text-[#8E8B63] tracking-wide drop-shadow-[2px_2px_4px_rgba(142,139,99,0.08)]">
         Sugerencias de Hospedaje
     </h1>
     <div class="flex flex-col gap-12 w-[90%] max-w-[700px] mx-auto">
-        <div id="animado-hotel1" class="bg-[#EDDADA] rounded-2xl shadow-[0_2px_12px_rgba(142,139,99,0.10)] p-8 px-6 flex flex-col items-center border-2 border-white relative overflow-hidden opacity-0">
-            <img src="/iconos/hotel1.webp" class="w-full block rounded-xl object-cover aspect-[16/9] mb-6 sm:w-full" alt="Hotel Wyndham">
+        <div id="animado-hotel1" class="bg-[#EDDADA] rounded-2xl shadow-[0_2px_12px_rgba(142,139,99,0.10)] p-8 px-6 flex flex-col items-center border-2 border-white relative overflow-hidden opacity-0 cursor-pointer">
+            <img src="/iconos/hotel1.webp" class="w-full block rounded-xl object-cover aspect-[16/9] mb-6" alt="Hotel Wyndham">
             <h2 class="font-[Parisienne] text-3xl font-bold text-center mt-4 text-[#CB8587] tracking-wide drop-shadow-[1px_1px_2px_rgba(203,133,135,0.08)]">
                 Hotel Wyndham
             </h2>
             <p class="text-black">Click para conocer las tarifas</p>
         </div>
         <div id="animado-hotel2" class="bg-[#EDDADA] rounded-2xl shadow-[0_2px_12px_rgba(142,139,99,0.10)] p-8 px-6 flex flex-col items-center border-2 border-white relative overflow-hidden opacity-0">
-            <img src="/iconos/hotel2.jpg" class="w-full block rounded-xl object-cover aspect-[16/9] mb-6 sm:w-full" alt="Hotel Ibis">
+            <img src="/iconos/hotel2.jpg" class="w-full block rounded-xl object-cover aspect-[16/9] mb-6" alt="Hotel Ibis">
             <h2 class="font-[Parisienne] text-3xl font-bold text-center mt-4 text-[#CB8587] tracking-wide drop-shadow-[1px_1px_2px_rgba(203,133,135,0.08)]">
                 Hotel Ibis
             </h2>
             <p class="text-black">Click para conocer las tarifas</p>
         </div>
     </div>
+    <!-- Modal para promo hotel -->
+    <div id="modal-promo-hotel" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 bg-opacity-60 transition-opacity duration-200 opacity-0 pointer-events-none">
+      <div class="relative bg-transparent flex items-center justify-center">
+        <button id="cerrar-modal-promo" class="absolute top-2 right-2 text-white text-3xl font-bold hover:text-[#CB8587] z-10">&times;</button>
+        <img src="/iconos/promo1.jpeg" alt="Promo Hotel Wyndham" class="max-w-[90vw] max-h-[80vh] rounded-xl shadow-lg" />
+      </div>
+    </div>
+    <style>
+      #modal-promo-hotel.mostrar {
+        opacity: 1;
+        pointer-events: auto;
+      }
+    </style>
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         const elHotel1 = document.getElementById('animado-hotel1');
@@ -64,6 +77,26 @@
             { threshold: 0.2 }
           );
           observerHotel2.observe(elHotel2);
+        }
+
+        // Modal promo hotel
+        const promoDiv = document.getElementById('animado-hotel1');
+        const modalPromo = document.getElementById('modal-promo-hotel');
+        const cerrarPromoBtn = document.getElementById('cerrar-modal-promo');
+        if (promoDiv && modalPromo && cerrarPromoBtn) {
+          promoDiv.addEventListener('click', () => {
+            modalPromo.classList.add('mostrar');
+          });
+          cerrarPromoBtn.addEventListener('click', (e) => {
+            modalPromo.classList.remove('mostrar');
+            e.stopPropagation();
+          });
+          // Cerrar modal al hacer click fuera de la imagen
+          modalPromo.addEventListener('click', (e) => {
+            if (e.target === modalPromo) {
+              modalPromo.classList.remove('mostrar');
+            }
+          });
         }
       });
     </script>
