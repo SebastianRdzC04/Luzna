@@ -13,6 +13,10 @@ import SeccionFinal from "../components/astro/SeccionFinal.astro";
 const nombreInvitado = "Familia Robles";
 const numInvitados = 5;
 
+// configura que la hora es en la zona horaria gmt-6
+const options = { timeZone: 'America/Mexico_City' };
+
+
 const fechaEvento = new Date('2025-09-13T19:00:00');
 
 import { getCollection } from 'astro:content';
@@ -106,6 +110,10 @@ console.log('Guest names:', guestNames);
 	</main>
 	<script>
 		// Cambia el mensaje visible según el scroll
+
+		const fechaEvento = new Date('2025-09-13T19:00:00-06:00'); // GMT-6
+
+
 		const sections = [
 			document.getElementById('msg-1'),
 			document.getElementById('msg-2'),
@@ -138,9 +146,9 @@ console.log('Guest names:', guestNames);
 
 		// Obtener la fecha del evento desde el div hidden
 		function getFechaEvento() {
-			const el = document.getElementById('fecha-evento');
+			const el = fechaEvento;
 			if (!el) return null;
-			return new Date(el.textContent.trim());
+			return new Date(el);
 		}
 
 		// Escribir la fecha formateada en el texto
