@@ -2,7 +2,7 @@
   {
     "id": 1,
     "name": "Luz Natalia Robles Ledesma Y Familia",
-    "numberOfGuests": 5
+    "numberOfGuests": 6
   },
   {
     "id": 2,
@@ -21,17 +21,17 @@
   },
   {
     "id": 5,
-    "name": "Lilia Verónica Ledezma Castruita (Fam. Castro Ledezma)",
+    "name": "Fam. Castro Ledezma",
     "numberOfGuests": 5
   },
   {
     "id": 6,
-    "name": "Carlos Eduardo Ledesma Castruita (Fam. Ledesma Ventura)",
+    "name": "Fam. Ledesma Ventura",
     "numberOfGuests": 3
   },
   {
     "id": 7,
-    "name": "Wendy Estrella Ledesma Castruita (Fam. Valdéz Zavala)",
+    "name": "Fam. Valdéz Zavala",
     "numberOfGuests": 5
   },
   {
@@ -41,27 +41,27 @@
   },
   {
     "id": 9,
-    "name": "Sergio Eduardo Robles Medrano (Fam. Robles García)",
+    "name": "Fam. Robles García",
     "numberOfGuests": 3
   },
   {
     "id": 10,
-    "name": "Yazmin Areli Robles Medrano (Fam. Martínez Robles)",
+    "name": "Fam. Martínez Robles",
     "numberOfGuests": 2
   },
   {
     "id": 11,
-    "name": "Gema Eunice Robles Medrano (Fam. Castillo Robles)",
+    "name": "Fam. Castillo Robles",
     "numberOfGuests": 5
   },
   {
     "id": 12,
-    "name": "Tita Castruita Rivera (Fam. Dorado Castruita)",
+    "name": "Fam. Dorado Castruita",
     "numberOfGuests": 3
   },
   {
     "id": 13,
-    "name": "Romualdo Castruita Rivera (Fam. Castruita Castorena)",
+    "name": "Fam. Castruita Castorena",
     "numberOfGuests": 5
   },
   {
@@ -286,7 +286,7 @@
   },
   {
     "id": 58,
-    "name": "Priscila Sánchez Viesca Flores",
+    "name": "Priscyla Sánchez Viesca Flores",
     "numberOfGuests": 2
   },
   {
@@ -306,137 +306,137 @@
   },
   {
     "id": 62,
-    "name": "Liah Medina Sosa (Amiga De Luz Y Fam)",
+    "name": "Fam. Medina Sosa",
     "numberOfGuests": 4
   },
   {
     "id": 63,
-    "name": "Silvestre Jaquez Vargas (Amigo De Luz Y Fam)",
+    "name": "Fam. Jaquez Vargas",
     "numberOfGuests": 3
   },
   {
     "id": 64,
-    "name": "Ruben Garza Leyva (Amigo De Luz Y Fam)",
+    "name": "Fam. Garza Leyva",
     "numberOfGuests": 3
   },
   {
     "id": 65,
-    "name": "Miranda (Amiga De Luz)",
+    "name": "Miranda",
     "numberOfGuests": 1
   },
   {
     "id": 66,
-    "name": "Fabiana (Amiga De Luz)",
+    "name": "Fabiana",
     "numberOfGuests": 1
   },
   {
     "id": 67,
-    "name": "Christian (Amigo De Luz)",
+    "name": "Christian",
     "numberOfGuests": 1
   },
   {
     "id": 68,
-    "name": "Emilia (Amiga De Luz)",
+    "name": "Emilia",
     "numberOfGuests": 1
   },
   {
     "id": 69,
-    "name": "Daira (Amiga De Luz)",
+    "name": "Daira",
     "numberOfGuests": 1
   },
   {
     "id": 70,
-    "name": "Alexia (Amiga De Luz)",
+    "name": "Alexia",
     "numberOfGuests": 1
   },
   {
     "id": 71,
-    "name": "Luna (Amiga De Luz)",
+    "name": "Luna",
     "numberOfGuests": 1
   },
   {
     "id": 72,
-    "name": "Yunuen (Amigo De Luz)",
+    "name": "Yunuen",
     "numberOfGuests": 1
   },
   {
     "id": 73,
-    "name": "Ángela (Amiga De Luz)",
+    "name": "Ángela",
     "numberOfGuests": 1
   },
   {
     "id": 74,
-    "name": "Paula (Amiga De Luz)",
+    "name": "Paula",
     "numberOfGuests": 1
   },
   {
     "id": 75,
-    "name": "Coral (Amiga De Luz)",
+    "name": "Coral",
     "numberOfGuests": 1
   },
   {
     "id": 76,
-    "name": "Ángela Arriaga (Amiga De Luz)",
+    "name": "Ángela Arriaga",
     "numberOfGuests": 1
   },
   {
     "id": 77,
-    "name": "Naomi (Amiga De Luz)",
+    "name": "Naomi",
     "numberOfGuests": 1
   },
   {
     "id": 78,
-    "name": "Astrid (Amiga De Luz)",
+    "name": "Astrid",
     "numberOfGuests": 1
   },
   {
     "id": 79,
-    "name": "Sebastián (Amigo De Luz)",
+    "name": "Sebastián",
     "numberOfGuests": 1
   },
   {
     "id": 80,
-    "name": "Eugenio (Amigo De Luz)",
+    "name": "Eugenio",
     "numberOfGuests": 1
   },
   {
     "id": 81,
-    "name": "Gabriel (Amigo De Luz)",
+    "name": "Gabriel",
     "numberOfGuests": 1
   },
   {
     "id": 82,
-    "name": "Aldo (Amigo De Luz)",
+    "name": "Aldo",
     "numberOfGuests": 1
   },
   {
     "id": 83,
-    "name": "Ana (Amiga De Elsita)",
+    "name": "Ana",
     "numberOfGuests": 1
   },
   {
     "id": 84,
-    "name": "Dara (Amiga De Elsita)",
+    "name": "Dara",
     "numberOfGuests": 1
   },
   {
     "id": 85,
-    "name": "Miranda (Amiga De Elsita)",
+    "name": "Miranda",
     "numberOfGuests": 1
   },
   {
     "id": 86,
-    "name": "Alejandra (Amiga De Elsita)",
+    "name": "Alejandra",
     "numberOfGuests": 1
   },
   {
     "id": 87,
-    "name": "Hugo (Amiga De Elsita)",
+    "name": "Hugo",
     "numberOfGuests": 1
   },
   {
     "id": 88,
-    "name": "Hannia (Amiga De Elsita)",
+    "name": "Hannia",
     "numberOfGuests": 1
   }
 ]
