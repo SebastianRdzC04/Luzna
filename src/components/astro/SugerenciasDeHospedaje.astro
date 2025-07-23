@@ -25,7 +25,7 @@
     <div id="modal-promo-hotel" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 bg-opacity-60 transition-opacity duration-200 opacity-0 pointer-events-none">
       <div class="relative bg-transparent flex items-center justify-center">
         <button id="cerrar-modal-promo" class="absolute top-2 right-2 text-white text-3xl font-bold hover:text-[#CB8587] z-10">&times;</button>
-        <img src="/iconos/promo1.jpeg" alt="Promo Hotel Wyndham" class="max-w-[90vw] max-h-[80vh] rounded-xl shadow-lg" />
+        <img id="modal-promo-img" src="/iconos/promo1.jpeg" alt="Promo Hotel" class="max-w-[90vw] max-h-[80vh] rounded-xl shadow-lg" />
       </div>
     </div>
     <style>
@@ -80,12 +80,22 @@
 
         // Modal promo hotel
         const promoDiv = document.getElementById('animado-hotel1');
+        const promoDiv2 = document.getElementById('animado-hotel2');
         const modalPromo = document.getElementById('modal-promo-hotel');
         const cerrarPromoBtn = document.getElementById('cerrar-modal-promo');
-        if (promoDiv && modalPromo && cerrarPromoBtn) {
+        const modalPromoImg = document.getElementById('modal-promo-img');
+        if (promoDiv && modalPromo && cerrarPromoBtn && modalPromoImg) {
           promoDiv.addEventListener('click', () => {
+            modalPromoImg.src = '/iconos/promo1.jpeg';
             modalPromo.classList.add('mostrar');
           });
+          // Evento para Hotel Ibis
+          if (promoDiv2) {
+            promoDiv2.addEventListener('click', () => {
+              modalPromoImg.src = '/iconos/promo2.jpeg';
+              modalPromo.classList.add('mostrar');
+            });
+          }
           cerrarPromoBtn.addEventListener('click', (e) => {
             modalPromo.classList.remove('mostrar');
             e.stopPropagation();

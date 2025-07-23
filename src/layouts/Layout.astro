@@ -165,7 +165,7 @@ const url = 'https://luz.kysedomi.lat';
 			<div style="width: 180px; max-width: 80vw;">
 				<LottieAnimation src='/totorowalk.json' autoplay="visible"/>
 			</div>
-			<p style="
+			<p id="loading-text" style="
 				margin-top: 2rem;
 				font-family: 'Montserrat', sans-serif;
 				font-size: 1.5rem;
@@ -176,6 +176,22 @@ const url = 'https://luz.kysedomi.lat';
 			">
 				Cargando...
 			</p>
+			<!-- Botón Comenzar oculto al inicio -->
+			<button id="start-btn" style="
+				margin-top: 2.5rem;
+				padding: 0.8rem 2.2rem;
+				font-size: 1.4rem;
+				border-radius: 9999px;
+				border: 2px solid #8E8B63;
+				background: linear-gradient(135deg, #CB8587 60%, #EDDADA 100%);
+				color: #8E8B63;
+				font-family: 'Montserrat', sans-serif;
+				font-weight: bold;
+				cursor: pointer;
+				box-shadow: 0 2px 12px rgba(142,139,99,0.10);
+				display: none;
+				transition: background 0.3s, color 0.3s, border 0.3s;
+			">Comenzar</button>
 		</div>
 		<!-- Fin Preloader -->
 
@@ -212,15 +228,27 @@ const url = 'https://luz.kysedomi.lat';
 		</div>
 
 		<script>
-			// Preloader hide logic
+			// Preloader con botón "Comenzar"
 			window.addEventListener('DOMContentLoaded', () => {
 				const preloader = document.getElementById('preloader');
+				const audio = document.getElementById('bg-music');
+				const startBtn = document.getElementById('start-btn');
+				const loadingText = document.getElementById('loading-text');
 				setTimeout(() => {
+					startBtn.style.display = 'block';
+					if (loadingText) loadingText.style.display = 'none';
+				}, 5000); // Mostrar botón después de 5 segundos
+
+				startBtn.addEventListener('click', () => {
 					preloader.style.opacity = '0';
 					setTimeout(() => {
 						preloader.style.display = 'none';
+						// Inicia la música después del loader
+						audio.play().catch(() => {
+							console.log('Error al reproducir la música. Puede que el navegador bloquee la reproducción automática.');
+						});
 					}, 600);
-				}, 5000); // Duración del loader: 5 segundos
+				});
 			});
 
 			const audio = document.getElementById('bg-music');
