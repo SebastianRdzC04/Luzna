@@ -147,7 +147,7 @@ console.log('Guest names:', guestNames);
 		function getFechaEvento() {
 			const el = document.getElementById('fecha-evento');
 			if (!el) return null;
-			return new Dat);
+			return new Date(el.textContent.trim());
 		}
 
 		// Escribir la fecha formateada en el texto
