@@ -41,7 +41,7 @@ const AcceptInvitation: React.FC<AcceptInvitationProps> = ({ nombreInvitado, num
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const phone = "528712515134";
+    const phone = "528713530063";
     const text = `${message}\nNombre: ${nombreInvitado}\nInvitados confirmados: ${selectedGuests}`;
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
     window.open(url, "_blank");
