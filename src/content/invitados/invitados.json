@@ -463,5 +463,15 @@
     "id": 93,
     "name": "Coquis Sotelo Loza",
     "numberOfGuests": 2
+  },
+  {
+    "id": 94,
+    "name":"Carlos Enrique Vázquez García",
+    "numberOfGuests": 2
+  },
+  {
+    "id": 95,
+    "name":"Edgar Alejandro Tafoya Nuñez",
+    "numberOfGuests": 2
   }
 ]
